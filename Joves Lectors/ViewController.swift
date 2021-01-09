@@ -7,14 +7,20 @@
 //
 
 import UIKit
-
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-
+import WebKit
+class ViewController: UIViewController, WKUIDelegate {
+   var webView: WKWebView!
+   override func viewDidLoad() {
+      super.viewDidLoad()
+      let myURL = URL(string:"https://didacproves.rf.gd/socisjjl/login/")
+      let myRequest = URLRequest(url: myURL!)
+      webView.load(myRequest)
+   }
+   override func loadView() {
+      let webConfiguration = WKWebViewConfiguration()
+      webView = WKWebView(frame: .zero, configuration: webConfiguration)
+      webView.uiDelegate = self
+      view = webView
+   }
 }
 
